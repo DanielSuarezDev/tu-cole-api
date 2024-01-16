@@ -7,6 +7,12 @@ import configuration from './modules/config/configuration';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { VitacoreModule } from './modules/vitacore/vitacore.module';
+import { UserModule } from './modules/user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { CourseModule } from './modules/course/course.module';
+import { SubjectModule } from './modules/subject/subject.module';
+import { StudentModule } from './modules/student/student.module';
+import { ParentModule } from './modules/parent/parent.module';
 
 @Module({
   imports: [
@@ -22,6 +28,12 @@ import { VitacoreModule } from './modules/vitacore/vitacore.module';
       }),
     }),
     VitacoreModule,
+    UserModule,
+    AuthModule,
+    CourseModule,
+    SubjectModule,
+    StudentModule,
+    ParentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

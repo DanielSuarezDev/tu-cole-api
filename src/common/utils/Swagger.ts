@@ -12,22 +12,22 @@ export class Swagger {
         {
           description: `[just text field] Please enter token in following format: Bearer <JWT>`,
           name: 'Authorization',
-          bearerFormat: 'Bearer',
-          scheme: 'Bearer',
+          bearerFormat: 'JWT',
+          scheme: 'bearer',
           type: 'http',
-          in: 'Header',
+          in: 'header',
         },
         Swagger.BEARER_AUTH_NAME,
       )
-      .addApiKey(
-        {
-          type: 'apiKey',
-          description: 'API Key',
-          in: 'header',
-          name: 'x-api-key',
-        },
-        Swagger.API_KEY,
-      )
+      // .addApiKey(
+      //   {
+      //     type: 'apiKey',
+      //     description: 'API Key',
+      //     in: 'header',
+      //     name: 'x-api-key',
+      //   },
+      //   Swagger.API_KEY,
+      // )
       .addTag('health')
       .addTag('vitacore')
       .build();

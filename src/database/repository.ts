@@ -1,6 +1,6 @@
 import {
-  Document,
   Model,
+  Document,
   UpdateQuery,
   _FilterQuery,
   QueryOptions,

@@ -1,13 +1,20 @@
-import { Controller, Get } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Request, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { AppService, HealthBody } from './app.service';
+import { JwtAuthGuard } from './modules/auth/guards/firebase.guard';
+import { UserService } from './modules/user/user.service';
 
 @ApiTags('health')
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private readonly userService: UserService,
+  ) {}
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiResponse({
     status: 200,
     description: 'Health Check',
@@ -16,5 +23,12 @@ export class AppController {
   @Get()
   getHello(): HealthBody {
     return this.appService.getHello();
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @Get('/profile')
+  async getProfile(@Request() req) {
+    return await this.userService.getUserProfile(req.user);
   }
 }
