@@ -27,6 +27,10 @@ export class UserService {
     return this.repository.findById(id);
   }
 
+  findByUserId(id: string): Promise<User> {
+    return this.repository.findByUserId(id);
+  }
+
   create(user: CreateUserDto): Promise<User> {
     return this.repository.create(user);
   }
@@ -54,7 +58,7 @@ export class UserService {
       name: user.name,
       imageUrl: user.picture,
       phone: user.phone_number ?? '',
-      role: Roles.STUDENT,
+      role: Roles.FATHER,
     });
 
     console.log(userCreated);

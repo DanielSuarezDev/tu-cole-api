@@ -5,14 +5,17 @@ import { AppModule } from 'src/app.module';
 import { Student, StudentSchema } from '@entities';
 import { MongooseModule } from '@nestjs/mongoose';
 import { StudentRepository } from './student.repository';
+import { UserModule } from '../user/user.module';
+import { RolesGuard } from '../auth/guards/roles.guard';
 
 @Module({
   imports: [
     forwardRef(() => AppModule),
     MongooseModule.forFeature([{ name: Student.name, schema: StudentSchema }]),
+    UserModule,
   ],
   controllers: [StudentController],
-  providers: [StudentService, StudentRepository],
+  providers: [StudentService, StudentRepository, RolesGuard],
   exports: [StudentService, StudentRepository],
 })
 export class StudentModule {}

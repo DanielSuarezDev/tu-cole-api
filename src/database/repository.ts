@@ -23,6 +23,10 @@ export class Repository<T extends Document> {
     return this.model.findOne({ id }).exec();
   }
 
+  findByUserId(id: string): Promise<T> {
+    return this.model.findOne({ userId: id }).exec();
+  }
+
   create(d: Partial<T>): Promise<T> {
     const created = new this.model({
       id: d.id ?? uuid(),

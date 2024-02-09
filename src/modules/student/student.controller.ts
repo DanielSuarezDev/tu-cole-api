@@ -13,6 +13,8 @@ import { JwtAuthGuard } from '../auth/guards/firebase.guard';
 import { CreateStudentDto, ReadStudentDto, UpdateStudentDto } from '@contracts';
 import { v4 as uuidv4 } from 'uuid';
 import { StudentService } from './student.service';
+import { Roles } from '../auth/role.decorator';
+import { RolesGuard } from '../auth/guards/roles.guard';
 
 function generateUniqueCode(length = 6) {
   const characters =
@@ -35,7 +37,16 @@ export class StudentController {
     @Request() req,
     // @Param('parentId') parentId: string,
   ): Promise<ReadStudentDto[]> {
+    console.log('====', req);
     return this.serviceStudent.findStudentsByParentId(req.user.user_id);
+  }
+
+  @Get('/all-if-teacher')
+  @ApiBearerAuth()
+  @Roles('teacher')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  getAllStudentsIfTeacher(): Promise<ReadStudentDto[]> {
+    return this.serviceStudent.findAll();
   }
 
   @Post()
