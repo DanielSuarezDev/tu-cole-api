@@ -43,7 +43,7 @@ export class Vitacore extends Document {
   @ApiProperty()
   @IsUUID('4')
   @Prop({ name: 'user_id', index: true })
-  userId: string;
+  userId: string[];
 
   // @ApiProperty()
   // @IsUUID('4')

@@ -28,6 +28,10 @@ export class Student extends Document {
 
   @Prop()
   @ApiProperty()
+  imageUrl: string;
+
+  @Prop()
+  @ApiProperty()
   parents: string[];
 
   @Prop()

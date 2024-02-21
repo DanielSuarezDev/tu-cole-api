@@ -16,15 +16,15 @@ import { StudentService } from './student.service';
 import { Roles } from '../auth/role.decorator';
 import { RolesGuard } from '../auth/guards/roles.guard';
 
-function generateUniqueCode(length = 6) {
-  const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  return result.toUpperCase();
-}
+// function generateUniqueCode(length = 6) {
+//   const characters =
+//     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+//   let result = '';
+//   for (let i = 0; i < length; i++) {
+//     result += characters.charAt(Math.floor(Math.random() * characters.length));
+//   }
+//   return result.toUpperCase();
+// }
 
 @Controller('student')
 export class StudentController {
@@ -53,11 +53,11 @@ export class StudentController {
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   create(@Body() data: CreateStudentDto): Promise<ReadStudentDto> {
-    const uniqueCode = generateUniqueCode();
+    // const uniqueCode = generateUniqueCode();
     const dataStudent = {
       ...data,
       id: uuidv4(),
-      code: uniqueCode,
+      // code: uniqueCode,
     };
     return this.serviceStudent.create(dataStudent);
   }

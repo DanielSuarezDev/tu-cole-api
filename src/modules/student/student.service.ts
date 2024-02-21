@@ -3,10 +3,14 @@ import { StudentRepository } from './student.repository';
 import { _FilterQuery } from 'mongoose';
 import { Student } from '@entities';
 import { CreateStudentDto, ReadStudentDto, UpdateStudentDto } from '@contracts';
+import { CourseService } from '../course/course.service';
 
 @Injectable()
 export class StudentService {
-  constructor(private repository: StudentRepository) {}
+  constructor(
+    private repository: StudentRepository,
+    private courseService: CourseService,
+  ) {}
 
   findAll(f?: _FilterQuery<Student>): Promise<Student[]> {
     return this.repository.findAll(f);
@@ -20,8 +24,23 @@ export class StudentService {
     return this.repository.findById(id);
   }
 
-  create(user: CreateStudentDto): Promise<Student> {
-    return this.repository.create(user);
+  // create(user: CreateStudentDto): Promise<Student> {
+  //   return this.repository.create(user);
+  // }
+
+  async create(data: CreateStudentDto): Promise<Student> {
+    // Primero, crea el estudiante
+    const student = await this.repository.create(data);
+
+    // Luego, actualiza el curso asignando el ID del nuevo estudiante
+    if (data.course) {
+      await this.courseService.addStudentToCourse(
+        data.course,
+        student.id.toString(),
+      );
+    }
+
+    return student;
   }
 
   async update(id: string, user: UpdateStudentDto): Promise<ReadStudentDto> {

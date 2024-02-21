@@ -27,6 +27,10 @@ export class Course extends Document {
   description: string;
 
   @ApiProperty()
+  @Prop({ required: false })
+  color?: string;
+
+  @ApiProperty()
   @Prop({ name: 'id_teacher', required: false })
   idTeacher?: string;
 

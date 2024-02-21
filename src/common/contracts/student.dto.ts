@@ -12,6 +12,11 @@ export class CreateStudentDto {
   @IsNotEmpty()
   lastName: string;
 
+  @ApiProperty({ example: 'https://example.com/image.jpg', required: false })
+  @IsString()
+  @IsOptional()
+  imageUrl?: string;
+
   @ApiProperty({ example: '2024-01-01', required: false })
   @IsString()
   @IsOptional()
@@ -121,6 +126,9 @@ export class ReadStudentDto {
 
   @ApiProperty()
   lastName: string;
+
+  @ApiProperty()
+  imageUrl: string;
 
   @ApiProperty()
   parents: string[];

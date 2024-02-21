@@ -21,6 +21,12 @@ export class CreateCourseDto {
   @IsString()
   idTeacher?: string;
 
+  @ApiProperty({
+    required: false,
+  })
+  @IsString()
+  color?: string;
+
   @ApiProperty()
   students?: string[];
 
@@ -47,6 +53,9 @@ export class ReadCourseDto {
 
   @ApiProperty()
   students?: string[];
+
+  @ApiProperty()
+  color?: string;
 
   @ApiProperty()
   subjects?: string[];

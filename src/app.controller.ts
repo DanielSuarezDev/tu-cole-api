@@ -13,8 +13,6 @@ export class AppController {
     private readonly userService: UserService,
   ) {}
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
   @ApiResponse({
     status: 200,
     description: 'Health Check',

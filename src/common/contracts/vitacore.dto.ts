@@ -24,7 +24,7 @@ export class CreateVitacoreDto {
   type: VitacoreEnum;
 
   @ApiProperty()
-  userId: string;
+  userId: string[];
 
   @ApiProperty()
   accountId: string;

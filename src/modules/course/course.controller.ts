@@ -1,4 +1,12 @@
-import { Body, Controller, Param, Post, Put, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import { CourseService } from './course.service';
 import {
   CreateCourseDto,
@@ -12,6 +20,13 @@ import { v4 as uuidv4 } from 'uuid';
 @Controller('course')
 export class CourseController {
   constructor(private serviceCourse: CourseService) {}
+
+  @Get()
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  findAll(): Promise<ReadCourseDto[]> {
+    return this.serviceCourse.findAll();
+  }
 
   @Post()
   @ApiBearerAuth()
