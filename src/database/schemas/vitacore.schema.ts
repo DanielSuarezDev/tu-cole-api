@@ -57,6 +57,10 @@ export class Vitacore extends Document {
   @ApiProperty()
   @Prop({ name: 'teacher' })
   teacher: string;
+
+  @ApiProperty()
+  @Prop({ name: 'justified' })
+  justified?: boolean;
 }
 
 export const VitacoreSchema = SchemaFactory.createForClass(Vitacore);
