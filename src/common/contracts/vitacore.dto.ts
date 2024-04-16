@@ -1,7 +1,10 @@
 import { IsNotEmpty, IsOptional, IsUrl } from 'class-validator';
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 
-import { VitacoreEnum } from '../types/vitacore.types';
+import {
+  VitacoreEnum,
+  vitacoreClasificationEnum,
+} from '../types/vitacore.types';
 
 export class CreateVitacoreDto {
   @ApiProperty()
@@ -34,6 +37,9 @@ export class CreateVitacoreDto {
 
   @ApiProperty()
   teacher: string;
+
+  @ApiProperty()
+  clasification: vitacoreClasificationEnum;
 }
 
 export class UpdatePqrDto extends PartialType(CreateVitacoreDto) {}
@@ -53,6 +59,9 @@ export class ReadPqrDto {
 
   @ApiProperty()
   justified: boolean;
+
+  @ApiProperty()
+  clasification: vitacoreClasificationEnum;
 
   @ApiProperty()
   type: VitacoreEnum;

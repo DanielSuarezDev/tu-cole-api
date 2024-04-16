@@ -4,7 +4,10 @@ import { ApiProperty } from '@nestjs/swagger';
 import { HydratedDocument, Document } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-import { VitacoreEnum } from '@Common/types/vitacore.types';
+import {
+  VitacoreEnum,
+  vitacoreClasificationEnum,
+} from '@Common/types/vitacore.types';
 
 export type VitacoreDocument = HydratedDocument<Vitacore>;
 
@@ -61,6 +64,10 @@ export class Vitacore extends Document {
   @ApiProperty()
   @Prop({ name: 'justified' })
   justified?: boolean;
+
+  @ApiProperty()
+  @Prop({ name: 'clasification' })
+  clasification?: vitacoreClasificationEnum;
 }
 
 export const VitacoreSchema = SchemaFactory.createForClass(Vitacore);

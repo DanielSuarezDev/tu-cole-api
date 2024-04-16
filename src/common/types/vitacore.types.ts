@@ -4,3 +4,9 @@ export enum VitacoreEnum {
   AUSENCIES = 'AUSENCIES',
   OBSEVATIONS = 'OBSEVATIONS',
 }
+
+export enum vitacoreClasificationEnum {
+  DISCIPLINE = 'DISCIPLINE',
+  ACADEMIC = 'ACADEMIC',
+  NOVELTY = 'NOVELTY',
+}
