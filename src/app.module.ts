@@ -13,6 +13,7 @@ import { CourseModule } from './modules/course/course.module';
 import { SubjectModule } from './modules/subject/subject.module';
 import { StudentModule } from './modules/student/student.module';
 import { ParentModule } from './modules/parent/parent.module';
+import { RankingModule } from './modules/ranking/ranking.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { ParentModule } from './modules/parent/parent.module';
     SubjectModule,
     StudentModule,
     ParentModule,
+    RankingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

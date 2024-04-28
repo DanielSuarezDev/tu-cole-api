@@ -21,6 +21,13 @@ import { v4 as uuidv4 } from 'uuid';
 export class CourseController {
   constructor(private serviceCourse: CourseService) {}
 
+  @Get('/:id')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  findOne(@Param('id') id: string): Promise<ReadCourseDto> {
+    return this.serviceCourse.findByPk(id);
+  }
+
   @Get()
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)

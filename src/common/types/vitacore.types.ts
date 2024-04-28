@@ -3,6 +3,7 @@ export enum VitacoreEnum {
   DELAY = 'DELAY',
   AUSENCIES = 'AUSENCIES',
   OBSEVATIONS = 'OBSEVATIONS',
+  LICENSE = 'LICENSE',
 }
 
 export enum vitacoreClasificationEnum {
