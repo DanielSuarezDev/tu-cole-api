@@ -30,13 +30,6 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 export class StudentController {
   constructor(private serviceStudent: StudentService) {}
 
-  // @Get('/:id')
-  // @ApiBearerAuth()
-  // @UseGuards(JwtAuthGuard)
-  // getStudent(@Param('id') id: string): Promise<ReadStudentDto> {
-  //   return this.serviceStudent.findByPk(id);
-  // }
-
   @Get('/by-parent')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
@@ -53,6 +46,13 @@ export class StudentController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   getAllStudentsIfTeacher(): Promise<ReadStudentDto[]> {
     return this.serviceStudent.findAll();
+  }
+
+  @Get('/:id')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  getStudent(@Param('id') id: string): Promise<ReadStudentDto> {
+    return this.serviceStudent.findByPk(id);
   }
 
   @Post()
